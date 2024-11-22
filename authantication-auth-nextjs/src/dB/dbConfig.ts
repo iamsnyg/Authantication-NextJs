@@ -8,6 +8,7 @@ export async function connectDB() {
         })
         mongoose.connection.on("error", (error) => {
             console.log("Error connecting to the database: ", error);
+            process.exit();
         })
         
     } catch (error) {
