@@ -4,7 +4,13 @@ import User from "@/Models/users.models";
 
 export const sendEmail =async ({email, emailType, userId}: any)=>{
     try {
-        const hashToken = await bcrypt.hash(userId, 10);
+
+        console.log("====================================")
+        const hashToken = await bcrypt.hash(userId.toString(), 10);
+        console.log("email: ", email);
+        console.log("hashToken: ", hashToken);
+        console.log("userId: ", userId);
+        console.log("emailType: ", emailType);
 
         if(emailType==="VERIFY"){
             await User.findByIdAndUpdate(userId, {verifyUserToken: hashToken, verifyUserExpire: Date.now() + 3600000});
@@ -33,8 +39,13 @@ export const sendEmail =async ({email, emailType, userId}: any)=>{
         }
 
         const mailResponse = await transport.sendMail(mailOptions);
+        console.log("Mail response: ", mailResponse);
         return mailResponse;
     } catch (error: any) {
         throw new Error(error.message);
     }
 }
+
+
+
+
