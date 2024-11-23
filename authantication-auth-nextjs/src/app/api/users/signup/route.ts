@@ -13,13 +13,13 @@ export async function POST(request: NextRequest) {
         const reqBody = await request.json();
         const { email, password, username } = reqBody;
 
-        console.log("Request: " , email);
 
-        // if (!email || !password || !username) {
-        //     return NextResponse.json({
-        //         message: "Please enter all fields",
-        //     },{status: 400});
-        // }
+
+        if (!email || !password || !username) {
+            return NextResponse.json({
+                message: "Please enter all fields",
+            },{status: 400});
+        }
 
         const user= await User.findOne({email});
 
@@ -32,21 +32,15 @@ export async function POST(request: NextRequest) {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        console.log("Hashed password: ", hashedPassword);
-
         const newUser = new User({
             email,
             password: hashedPassword,
             username,
         });
 
-        console.log("New user: ", newUser);
 
         const savedUser=await newUser.save();
-        console.log("User created successfully: ", savedUser);
-
         const mail=await sendEmail({email, emailType: "VERIFY", userId: savedUser._id});
-        console.log("Mail: ", mail);
 
         return NextResponse.json({
             message: "User created successfully",
