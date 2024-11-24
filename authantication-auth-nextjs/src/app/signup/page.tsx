@@ -73,7 +73,7 @@ function page() {
         placeholder='Password'
         type="password" />
         <button 
-        className='p-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg'
+        className='p-2 mx-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg'
         onClick={onSignup}
         >
             {buttonDisabled ? "Please fill all fields": "Signup"}

@@ -20,8 +20,6 @@ function LoginPage() {
     const [loading, setLoading] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
-
-
     const onLogin = async () => {
         try {
             setLoading(true);
@@ -31,7 +29,7 @@ function LoginPage() {
             router.push("/profile");
         } catch (error:any) {
             console.log("Login failed", error.message);
-            toast.error(error.message);
+            toast.error(error.response.data.message);
         } finally{
         setLoading(false);
         }
@@ -44,10 +42,6 @@ function LoginPage() {
             setButtonDisabled(true);
         }
     }, [user]);
-
-    // if(!loading) return null;
-
-    
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -82,12 +76,12 @@ function LoginPage() {
 
         <button
             onClick={onLogin}
-            className="p-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg"
+            className="p-2 my-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg"
         >
             Login here
         </button>
 
-        <Link className='text-white' href="/signup">Go! to Signup Page</Link>
+        <Link className='text-white underline' href="/signup">Go! to Signup Page</Link>
 
         
     </div>
