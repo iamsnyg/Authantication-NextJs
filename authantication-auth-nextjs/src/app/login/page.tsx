@@ -47,18 +47,16 @@ function LoginPage() {
 
     // if(!loading) return null;
 
-    if(!isLoaded) {
-        setIsLoaded(true);
-    }
+    
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <div>
-            <h1 className='text-2xl text-white font-bold mb-4'>{!loading ? "Processing" : "Login"}</h1>
+            <h1 className='text-2xl text-white font-bold mb-4'>{loading ? "Processing" : "Login"}</h1>
         </div>
         
         
-        <label htmlFor="email">email</label>
+        <label className='text-white' htmlFor="email">email</label>
         <input 
         className="p-2 text-black border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
         id="email"
@@ -69,7 +67,7 @@ function LoginPage() {
         />
 
 
-        <label htmlFor="password">password</label>
+        <label className='text-white' htmlFor="password">password</label>
         <input 
         className="p-2 text-black border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
         id="password"
@@ -89,7 +87,7 @@ function LoginPage() {
             Login here
         </button>
 
-        <Link href="/signup">Go! to Signup Page</Link>
+        <Link className='text-white' href="/signup">Go! to Signup Page</Link>
 
         
     </div>

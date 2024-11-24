@@ -48,7 +48,7 @@ function page() {
         <h1
         className='text-2xl text-white font-bold mb-4'
         >{loading ? "Processing...": "Signup"}</h1>
-        <label htmlFor="username">username</label>
+        <label className='text-white' htmlFor="username">username</label>
         <input
         className='p-2 text-black border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600'
         id='username'
@@ -56,7 +56,7 @@ function page() {
         onChange={(e)=> setUser({...user, username: e.target.value})}
         placeholder='Username'
         type="text" />
-        <label htmlFor="email">Email</label>
+        <label className='text-white' htmlFor="email">Email</label>
         <input
         className='p-2 text-black border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600'
         id='email'
@@ -64,7 +64,7 @@ function page() {
         onChange={(e)=> setUser({...user, email: e.target.value})}
         placeholder='Email'
         type="email" />
-        <label htmlFor="password">Password</label>
+        <label className='text-white' htmlFor="password">Password</label>
         <input
         className='p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600'
         id='password'
@@ -78,7 +78,7 @@ function page() {
         >
             {buttonDisabled ? "Please fill all fields": "Signup"}
         </button>
-        <Link href="/login">
+        <Link className='text-white underline' href="/login">
         visit login page
         </Link>
     
