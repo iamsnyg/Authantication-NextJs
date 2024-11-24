@@ -2,39 +2,38 @@
 
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import toast, { Toast } from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 
-function page() {
+function LoginPage() {
     const router = useRouter();
 
     const [user, setUser] = useState({
         email: "",
         password: "",
-        username: "",
+        
     });
 
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [loading, setLoading] = useState(false);
 
-    const onSignup=async()=>{
+    const onLogin=async()=>{
         try {
             setLoading(true);
-            const response = await axios.post("/api/users/signup", user);
+            const response = await axios.post("/api/users/login", user);
 
             console.log(response.data);
-            router.push("/login");
+            router.push("/profile");
 
-        } catch (error) {
+        } catch (error: any) {
             console.log(error);
             
         }
     }
 
     useEffect(()=>{
-        if(user.email.length>0 && user.password.length>0 && user.username.length>0){
+        if(user.email.length>0 && user.password.length>0 ){
             setButtonDisabled(false);
         }else{
             setButtonDisabled(true);
@@ -47,15 +46,7 @@ function page() {
     >
         <h1
         className='text-2xl text-white font-bold mb-4'
-        >{loading ? "Processing...": "Signup"}</h1>
-        <label htmlFor="username">username</label>
-        <input
-        className='p-2 text-black border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600'
-        id='username'
-        value={user.username}
-        onChange={(e)=> setUser({...user, username: e.target.value})}
-        placeholder='Username'
-        type="text" />
+        >{loading ? "Processing...": "Login"}</h1>
         <label htmlFor="email">Email</label>
         <input
         className='p-2 text-black border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-600'
@@ -74,16 +65,16 @@ function page() {
         type="password" />
         <button 
         className='p-2 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-lg'
-        onClick={onSignup}
+        onClick={onLogin}
         >
             {buttonDisabled ? "Please fill all fields": "Signup"}
         </button>
-        <Link href="/login">
-        visit login page
+        <Link href="/signup">
+        visit Signup page
         </Link>
     
     </div>
   )
 }
 
-export default page
+export default LoginPage
